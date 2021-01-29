@@ -134,12 +134,20 @@ let inputResin = document.getElementById('newResin');
 let setResin = document.getElementById('setResin');
 
 openSettings.addEventListener("click", () => {
+    inputResin.value = currentResin;
     document.getElementById("settings-overlay").style.height = "100%";
 })
 
 closeSettings.addEventListener("click", () => {
     document.getElementById("settings-overlay").style.height = "0%";
 })
+
+document.onkeydown = (evt) => {
+    console.log(evt)
+    if(evt.key === "Escape") {
+        document.getElementById("settings-overlay").style.height = "0%";
+    }
+}
 
 setResin.addEventListener("click", () => {
     changeResin(parseInt(inputResin.value));
