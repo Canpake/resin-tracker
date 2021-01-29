@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+
+    <title>Resin Tracker</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+  </head>
+  <body>
+      <!-- For dragging purposes -->
+    <div id="drag"></div>
+
+    <div id="bg"></div>
+    
+    <div class="resin">
+        <div class="resin-value">
+            <span id="resin-amount">102</span> / 160
+        </div>
+        <div class="resin-time">
+            <span id="resin-time-text">Loading...</span>
+            <!-- <span id="resin-time-hours">6</span>h
+            <span id="resin-time-minutes">24</span>m
+            <span id="resin-time-seconds">48</span>s -->
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="btn20">–20</button>
+        <button id="btn40">–40</button>
+        <button id="btn60">+60</button>
+        <button id="settings">...</button>
+    </div>
+
+    <script src="./src/renderer.js"></script>
+  </body>
+</html>
