@@ -1,14 +1,22 @@
 const resinCap = 160;               // no longer 120, yay
 const resinRecover = 480000;        // time for resin to recover (in ms) 
 
-let currentResin = 80;              // set to 0? 100? should be auto calculated based on last close time
-let lastUpdateTime = Date.now();    // unix timestamp - when the counter was last updated 
+// How the timer is kept track of; set to default values
+let currentResin;
+let lastUpdateTime;    // when the counter was last updated
 
 let refresh;    // variable to hold setInterval() refresh
 
 let resin = document.getElementById('resin-amount');
 let time = document.getElementById('resin-time-text');
 let full = document.getElementById('full');
+
+
+// takes in hours, minutes, seconds, and returns a string - Full if time is 0.
+function getTimeString(h, m, s) {
+    if (h + m + s == 0) { return "Full"; }
+    return `${h}h ${m}m ${s}s`;
+}
 
 // function to calculate time remaining and update resin if necessary
 function update() {
@@ -36,13 +44,10 @@ function update() {
     // update text
     time.innerText = getTimeString(hours, mins, secs);
     resin.innerText = currentResin;
-}
 
-function getTimeString(h, m, s) {
-    if (h + m + s == 0) { return "Full"; }
-    return `${h}h ${m}m ${s}s`;
+    // save values
+    saveState();
 }
-
 
 // function to begin repeatedly calling update() every 'interval' ms
 function repeatUpdate(interval) {
@@ -51,9 +56,43 @@ function repeatUpdate(interval) {
     }, interval)
 }
 
-// update every second (i.e. 1000ms); 
+// function to save to localStorage
+function saveState() {
+    window.localStorage.setItem('currentResin', currentResin);
+    window.localStorage.setItem('lastUpdateTime', lastUpdateTime);
+}
+
+// function to load from localStorage
+function loadState() {
+    prevResin = parseInt(window.localStorage.getItem('currentResin'));
+    prevTime = parseInt(window.localStorage.getItem('lastUpdateTime'));
+
+    console.log(prevResin);
+    console.log(prevTime);
+    console.log(Date.now());
+
+    // only load values if both exist; otherwise set to full
+    if (prevTime !== null || prevResin !== null) {
+        let timeElasped = Date.now() - prevTime;
+        console.log(timeElasped)
+        console.log(Math.floor(timeElasped/resinRecover))
+        console.log(timeElasped%resinRecover)
+        console.log(prevResin + Math.floor(timeElasped/resinRecover))
+
+        currentResin = Math.min(prevResin + Math.floor(timeElasped/resinRecover), resinCap);
+        console.log(currentResin)
+        lastUpdateTime = Date.now() - (timeElasped%resinRecover);       // set the last update time to the tick right before
+    } else {
+        currentResin = resinCap;
+        lastUpdateTime = Date.now();
+    };
+}
+
+
+// load state, then update every second (i.e. 1000ms); 
 // attempt to update once at start before repeating further calls
 try {
+    loadState();
     update();
     repeatUpdate(100);
 } catch (err) {
