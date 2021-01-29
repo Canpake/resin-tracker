@@ -56,7 +56,13 @@ function repeatUpdate(interval) {
     }, interval)
 }
 
-// TODO: make a changeResin() function and make it be used by setResin as well as changeResinFunction
+// function to change resin; used by setResin as well as changeResinFunction
+function changeResin(amount) {
+    if (amount >= 0) {
+        currentResin = Math.min(amount, 160);
+        update();
+    }
+}
 
 // function to save to localStorage
 function saveState() {
@@ -112,10 +118,7 @@ let btn60 = document.getElementById('btn60');
 // it keeps resin limited at resinCap; does nothing if it would be below 0.
 function changeResinFunction(amount) {
     return () => {
-        if (currentResin + amount >= 0) {
-            currentResin = Math.min(currentResin+amount, resinCap);
-            update();
-        }
+        changeResin(currentResin + amount);
     }
 }
 
@@ -139,5 +142,5 @@ closeSettings.addEventListener("click", () => {
 })
 
 setResin.addEventListener("click", () => {
-    currentResin = inputResin.value;
+    changeResin(parseInt(inputResin.value));
 })
