@@ -11,7 +11,6 @@ function createWindow () {
     y: height - 150,
     resizable: false,
     minimizable: false,
-    vibrancy: 'dark',
     frame: false,
     titleBarStyle: 'customButtonsOnHover',
     backgroundColor: '#B2ECFF',
@@ -21,8 +20,9 @@ function createWindow () {
       nodeIntegration: true
     }
   })
-  
+    
     win.loadFile('index.html')
+    win.setVisibleOnAllWorkspaces(true);
   }
   
   app.whenReady().then(createWindow)
