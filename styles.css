@@ -4,6 +4,7 @@
     --button-color-alt: #AF9041;
     --resin-fill: #56CCF2;
     --bg-color: #B2ECFF;
+    --bg-gradient: linear-gradient(30deg, #C2FCFF, #82BCCF);
     --bg-image: url(assets/images/resin.png);
 }
 
@@ -21,7 +22,8 @@
 
     -webkit-user-select: none;
     -webkit-app-region: drag;
-    /* background-color: rgba(100, 100, 100, 0.5); */
+    z-index: -1;
+    background: var(--bg-gradient);
 }
 
 body {
@@ -57,7 +59,7 @@ button:focus {
     left: 0;
     z-index: -1;
     background-image: var(--bg-image);
-    background-color: var(--bg-color);
+    /* background-color: var(--bg-color); */
     background-size: cover;
 }
 
