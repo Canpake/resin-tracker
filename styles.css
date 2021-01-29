@@ -1,6 +1,7 @@
 :root {
     --text-color: #282828;
     --button-color: #4188AF;
+    --button-color-alt: #AF9041;
     --resin-fill: #56CCF2;
     --bg-color: #B2ECFF;
     --bg-image: url(assets/images/resin.png);
@@ -25,6 +26,27 @@
 
 body {
     color: var(--text-color);
+}
+
+button {
+    font-family: 'Roboto';
+    font-size: 18px;
+
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 3px;
+    opacity: 80%;
+    
+    -webkit-app-region: no-drag;
+}
+
+button:hover {
+    opacity: 100%;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 #bg {
@@ -79,31 +101,84 @@ body {
 }
 
 .controls button {
-    font-family: 'Roboto';
-    font-size: 18px;
-
-    background-color: var(--button-color);
     margin-right: 6px;
-    border: none;
     padding: 2px;
-    border-radius: 3px;
-    opacity: 80%;
 
     flex: 1 0 60px;
-    -webkit-app-region: no-drag;
 }
 
-.controls button#settings {
+.controls button#settings-open {
     width: auto;
     margin: 0;
 
     flex: 1 1 30px;
 }
-.controls button:hover {
-    opacity: 100%;
+
+.overlay {
+    position: fixed;
+    height: 0;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+
+    background-color: rgba(255, 255, 255, 0.5);
+    overflow: hidden; /* Disable scrollling */
+    transition: 0.5s; /* Transition effect - sliding in */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.controls button:focus {
-    outline: none;
-    box-shadow: none;
+.overlay-resin {
+    height: 50px;   
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+
+    display: flex;   /* also aling the items along the centre equally */
+    flex-flow: row nowrap;
+    justify-content: center; 
+    align-items: center;
+    padding: 0px 20px;
+    
+    font-family: Roboto, sans-serif;
+}
+
+.overlay-resin label{
+    font-size: 16px;
+
+    /* to make this unselectable */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.overlay-resin input {
+    height: 30px;
+    width: 50px;
+    margin: 0px 10px 0px 15px;
+
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.overlay-resin button {
+    height: 30px;
+    width: 60px;
+}
+
+#settings-close {
+    position: absolute; 
+    width: 80px;
+    height: 30px;
+    right: -10px;   /* a bit further to the right since body is off slightly*/
+    bottom: 0;
+    background-color: var(--button-color-alt);
+    border-radius: 5px 0 0 0;
+
+    padding-right: 10px;
 }

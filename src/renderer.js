@@ -56,13 +56,15 @@ function repeatUpdate(interval) {
     }, interval)
 }
 
+// TODO: make a changeResin() function and make it be used by setResin as well as changeResinFunction
+
 // function to save to localStorage
 function saveState() {
     window.localStorage.setItem('currentResin', currentResin);
     window.localStorage.setItem('lastUpdateTime', lastUpdateTime);
 }
 
-// function to load from localStorage
+// function to load from localStorage - remember to call parseInt()!
 function loadState() {
     prevResin = parseInt(window.localStorage.getItem('currentResin'));
     prevTime = parseInt(window.localStorage.getItem('lastUpdateTime'));
@@ -96,16 +98,15 @@ try {
     update();
     repeatUpdate(100);
 } catch (err) {
-    console.log("Whoops! Something went wrong.")
+    console.log("Whoops! Something went wrong.");
     console.log(err);
 }
 
 
-// Buttons
-let btn20 = document.getElementById('btn20')
-let btn40 = document.getElementById('btn40')
-let btn60 = document.getElementById('btn60')
-let settings = document.getElementById('settings')
+// Buttons - Changing Resin
+let btn20 = document.getElementById('btn20');
+let btn40 = document.getElementById('btn40');
+let btn60 = document.getElementById('btn60');
 
 // returns a function that will increase or reduce resin by a certain amount;
 // it keeps resin limited at resinCap; does nothing if it would be below 0.
@@ -122,3 +123,21 @@ btn20.addEventListener("click", changeResinFunction(-20));
 btn40.addEventListener("click", changeResinFunction(-40));
 btn60.addEventListener("click", changeResinFunction(60));
 
+
+// Button - Settings Overlay
+let openSettings = document.getElementById('settings-open');
+let closeSettings = document.getElementById('settings-close');
+let inputResin = document.getElementById('newResin');
+let setResin = document.getElementById('setResin');
+
+openSettings.addEventListener("click", () => {
+    document.getElementById("settings-overlay").style.height = "100%";
+})
+
+closeSettings.addEventListener("click", () => {
+    document.getElementById("settings-overlay").style.height = "0%";
+})
+
+setResin.addEventListener("click", () => {
+    currentResin = inputResin.value;
+})
