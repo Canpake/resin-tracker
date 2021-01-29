@@ -12,7 +12,8 @@ function createWindow () {
     resizable: false,
     minimizable: false,
     frame: false,
-    titleBarStyle: 'customButtonsOnHover',
+    // transparent: true,
+    // titleBarStyle: 'customButtonsOnHover',
     backgroundColor: '#B2ECFF',
     alwaysOnTop: true,
 

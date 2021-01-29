@@ -152,3 +152,14 @@ document.onkeydown = (evt) => {
 setResin.addEventListener("click", () => {
     changeResin(parseInt(inputResin.value));
 })
+
+// Wave animation
+window.onload = () => {
+    var bgWave = wavify(document.querySelector('#bg-wave'), {
+        height: 60,
+        bones: 2,
+        amplitude: 4,
+        color: 'rgba(100, 150, 200, .8)',
+        speed: .1
+    })
+}
