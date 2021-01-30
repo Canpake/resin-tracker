@@ -1,14 +1,17 @@
 const { app, BrowserWindow, screen } = require('electron')
 
+const DEBUG = true;
+
 function createWindow () {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+
   const win = new BrowserWindow({
-    width: 700,
-    height: 700,
-    // width: 280,
-    // height: 128,
-    // x: width - 300,
-    // y: height - 150,
+    // width: 700,
+    // height: 700,
+    width: (DEBUG) ? 700 : 280,
+    height: (DEBUG) ? 700 : 128,
+    x: (DEBUG) ? 100 : width - 300,
+    y: (DEBUG) ? 100 : height - 150,
     resizable: false,
     minimizable: false,
     frame: false,
