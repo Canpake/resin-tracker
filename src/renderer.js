@@ -31,8 +31,8 @@ function update() {
 
     if (timeElasped >= resinRecover) { // if 8 minutes since last resin update, increase resin
         currentResin++;
-        lastUpdateTime = Date.now();
-        timeElasped = 0;
+        lastUpdateTime += resinRecover;
+        timeElasped -= resinRecover;
     }
 
     // for every resin remaining, add 8 minutes, minus the seconds elasped
