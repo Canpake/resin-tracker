@@ -13,10 +13,6 @@
     src: url('assets/fonts/zh-cn.ttf'); /* IE9 Compat Modes */
 }
 
-#drag {
-
-}
-
 body {
     color: var(--text-color);
 }
