@@ -4,7 +4,7 @@
     --button-color-alt: #AF9041;
     --resin-fill: #56CCF2;
     --bg-color: #B2ECFF;
-    --bg-gradient: linear-gradient(30deg, #C2FCFF, #82BCCF);
+    --bg-gradient: linear-gradient(30deg, var(--button-color), var(--resin-fill));
     --bg-image: url(assets/images/resin.png);
 }
 
@@ -14,16 +14,7 @@
 }
 
 #drag {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
 
-    -webkit-user-select: none;
-    -webkit-app-region: drag;
-    z-index: -1;
-    background: var(--bg-gradient);
 }
 
 body {
@@ -53,6 +44,21 @@ button:focus {
 
 #bg {
     position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    background: var(--bg-gradient);
+    z-index: -1;
+
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+}
+
+#bg-image {
+    position: absolute;
     width: 128px;
     height: 128px;
     top: 0;
@@ -62,6 +68,31 @@ button:focus {
     /* background-color: var(--bg-color); */
     background-size: cover;
 }
+
+#bg-wave {
+    background-color: var(--bg-color);
+    /* background-color: blue; */
+    border: 1px solid grey;
+    height: 2000px;
+    width: 2000px;
+    border-radius: 990px;
+
+    position: absolute;
+    top: -2000px;
+    left: -850px;
+    z-index: -1;
+
+    animation: 7s linear wave infinite;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+  }
 
 .resin {
     position: absolute;

@@ -11,6 +11,7 @@ let resin = document.getElementById('resin-amount');
 let time = document.getElementById('resin-time-text');
 let full = document.getElementById('full');
 
+let wave = document.getElementById("bg-wave");  // wave element; update style.top to move up/down
 
 // takes in hours, minutes, seconds, and returns a string - Full if time is 0.
 function getTimeString(h, m, s) {
@@ -45,6 +46,12 @@ function update() {
     time.innerText = getTimeString(hours, mins, secs);
     resin.innerText = currentResin;
 
+    // update wave height based off current resin
+    // top: -2025px at 100%, -1870px at 0%
+    // TODO: maybe make this reactive in the future? Note that -1870 comes from the height/width of the div minus screen height
+    waveHeight = -1870 - (currentResin/resinCap)*135;
+    wave.style.top = waveHeight + "px";
+
     // save values
     saveState();
 }
@@ -75,20 +82,11 @@ function loadState() {
     prevResin = parseInt(window.localStorage.getItem('currentResin'));
     prevTime = parseInt(window.localStorage.getItem('lastUpdateTime'));
 
-    console.log(prevResin);
-    console.log(prevTime);
-    console.log(Date.now());
-
     // only load values if both exist; otherwise set to full
     if (prevTime !== null || prevResin !== null) {
         let timeElasped = Date.now() - prevTime;
-        console.log(timeElasped)
-        console.log(Math.floor(timeElasped/resinRecover))
-        console.log(timeElasped%resinRecover)
-        console.log(prevResin + Math.floor(timeElasped/resinRecover))
 
         currentResin = Math.min(prevResin + Math.floor(timeElasped/resinRecover), resinCap);
-        console.log(currentResin)
         lastUpdateTime = Date.now() - (timeElasped%resinRecover);       // set the last update time to the tick right before
     } else {
         currentResin = resinCap;
