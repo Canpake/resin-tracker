@@ -1,6 +1,6 @@
 const { app, BrowserWindow, screen } = require('electron')
 
-const DEBUG = true;
+const DEBUG = false;
 
 function createWindow () {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
@@ -12,7 +12,7 @@ function createWindow () {
     height: (DEBUG) ? 700 : 128,
     x: (DEBUG) ? 100 : width - 300,
     y: (DEBUG) ? 100 : height - 150,
-    resizable: false,
+    resizable: DEBUG,
     minimizable: false,
     frame: false,
     // titleBarStyle: 'customButtonsOnHover',

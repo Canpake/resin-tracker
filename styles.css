@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'HYWenHei';
-    src: url('assets/fonts/zh-cn.ttf'); /* IE9 Compat Modes */
+    src: url('assets/fonts/HYWenHei/zh-cn.ttf');
 }
 
 body {
@@ -18,7 +18,7 @@ body {
 }
 
 button {
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-size: 18px;
 
     background-color: var(--button-color);
