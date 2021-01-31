@@ -77,20 +77,20 @@ function saveState() {
     window.localStorage.setItem('lastUpdateTime', lastUpdateTime);
 }
 
-// function to load from localStorage - remember to call parseInt()!
+// function to load from localStorage
 function loadState() {
     prevResin = parseInt(window.localStorage.getItem('currentResin'));
     prevTime = parseInt(window.localStorage.getItem('lastUpdateTime'));
 
     // only load values if both exist; otherwise set to full
-    if (prevTime !== null || prevResin !== null) {
-        let timeElasped = Date.now() - prevTime;
-
-        currentResin = Math.min(prevResin + Math.floor(timeElasped/resinRecover), resinCap);
-        lastUpdateTime = Date.now() - (timeElasped%resinRecover);       // set the last update time to the tick right before
-    } else {
+    if (isNaN(prevResin) || isNaN(prevTime)) {
         currentResin = resinCap;
         lastUpdateTime = Date.now();
+    } else {
+        let timeElasped = Date.now() - prevTime;
+    
+        currentResin = Math.min(prevResin + Math.floor(timeElasped/resinRecover), resinCap);
+        lastUpdateTime = Date.now() - (timeElasped%resinRecover);       // set the last update time to the tick right before
     };
 }
 
