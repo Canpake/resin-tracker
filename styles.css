@@ -79,7 +79,7 @@ button:focus {
     z-index: -1;
 
     animation: 14s linear wave infinite;
-    transition: 1s ease-out;
+    transition: top 1s ease-out;
 }
 
 @keyframes wave {
@@ -122,10 +122,19 @@ button:focus {
 
 .resin-value {
     font-size: 36px;
+    transition: font-size 0.4s ease-out;
+}
+
+.resin-value.small {
+    font-size: 27px;
 }
 
 .resin-time {
     font-size: 18px;
+    transition: font-size 0.4s ease-out;
+}
+.resin-time.small {
+    font-size: 14px;
 }
 
 .controls {
@@ -165,7 +174,7 @@ button:focus {
 
     background-color: rgba(255, 255, 255, 0.5);
     overflow: hidden; /* Disable scrollling */
-    transition: 0.5s; /* Transition effect - sliding in */
+    transition: height 0.5s; /* Transition effect - sliding in */
 
     display: flex;
     flex-direction: row;

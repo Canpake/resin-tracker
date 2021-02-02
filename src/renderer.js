@@ -172,9 +172,16 @@ inputResin.onkeydown = (evt) => {
 // Button - Resizing Window
 const {ipcRenderer} = require('electron');
 let resize = document.getElementById("resize");
+let resin_value = document.getElementsByClassName("resin-value")[0];
+let resin_time = document.getElementsByClassName("resin-time")[0];
+
 let expanded = true         // a boolean to keep track of if currently expanded or not
 
 resize.addEventListener("click", () => {
+    // TODO: hide buttons, change text size - preferably by changing a class name instead
+    resin_value.classList.toggle('small')
+    resin_time.classList.toggle('small')
+
     if (expanded) {
         expanded = false;
         ipcRenderer.send('resize-small');
