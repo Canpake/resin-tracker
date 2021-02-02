@@ -1,6 +1,6 @@
 const { app, BrowserWindow, screen, ipcMain } = require('electron')
 
-const DEBUG = true;
+const DEBUG = false;
 
 function createWindow () {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
@@ -28,7 +28,7 @@ function createWindow () {
     win.setVisibleOnAllWorkspaces(true);
 
     ipcMain.on('resize-small', (event, arg) => {
-      win.setSize(200, 100, true);
+      win.setSize(200, 75, true);
     })
     ipcMain.on('resize-large', (event, arg) => {
       win.setSize(280, 128, true);

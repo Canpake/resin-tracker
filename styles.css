@@ -63,6 +63,13 @@ button:focus {
     background-image: var(--bg-image);
     /* background-color: var(--bg-color); */
     background-size: cover;
+
+    transition: width ease-out 0.3s, height ease-out 0.3s;
+}
+
+#bg-image.small {
+    width: 75px;
+    height: 75px;
 }
 
 #bg-wave {

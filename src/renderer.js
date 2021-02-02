@@ -174,19 +174,31 @@ const {ipcRenderer} = require('electron');
 let resize = document.getElementById("resize");
 let resin_value = document.getElementsByClassName("resin-value")[0];
 let resin_time = document.getElementsByClassName("resin-time")[0];
+let bg_image = document.getElementById("bg-image");
 
 let expanded = true         // a boolean to keep track of if currently expanded or not
 
 resize.addEventListener("click", () => {
     // TODO: hide buttons, change text size - preferably by changing a class name instead
-    resin_value.classList.toggle('small')
-    resin_time.classList.toggle('small')
+    resin_value.classList.toggle('small');
+    resin_time.classList.toggle('small');
+    bg_image.classList.toggle('small');
 
     if (expanded) {
         expanded = false;
+        btn20.style.display = "none";
+        btn40.style.display = "none";
+        btn60.style.display = "none";
+        openSettings.style.display = "none";
+
         ipcRenderer.send('resize-small');
     } else {
         expanded = true;
         ipcRenderer.send('resize-large');
+
+        btn20.style.display = "block";
+        btn40.style.display = "block";
+        btn60.style.display = "block";
+        openSettings.style.display = "block";
     }
 })
