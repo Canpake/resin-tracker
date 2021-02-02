@@ -126,27 +126,45 @@ btn60.addEventListener("click", changeResinFunction(60));
 
 
 // Button - Settings Overlay
+let overlay = document.getElementById("settings-overlay");
 let openSettings = document.getElementById('settings-open');
 let closeSettings = document.getElementById('settings-close');
 let inputResin = document.getElementById('newResin');
 let setResin = document.getElementById('setResin');
 
+// entering options
 openSettings.addEventListener("click", () => {
     inputResin.value = currentResin;
-    document.getElementById("settings-overlay").style.height = "100%";
+    overlay.style.height = "100%";
 })
 
+// exiting options
 closeSettings.addEventListener("click", () => {
-    document.getElementById("settings-overlay").style.height = "0%";
+    overlay.style.height = "0%";
 })
 
 document.onkeydown = (evt) => {
-    console.log(evt)
     if(evt.key === "Escape") {
-        document.getElementById("settings-overlay").style.height = "0%";
+        overlay.style.height = "0%";
     }
 }
 
+// ways of submitting resin
 setResin.addEventListener("click", () => {
     changeResin(parseInt(inputResin.value));
 })
+
+inputResin.onkeyup = (evt) => {
+    if(evt.key === "Enter") {
+        changeResin(parseInt(inputResin.value));
+        // make button go back to normal
+        setResin.style.opacity="80%";
+
+    }
+}
+// button response to keypress
+inputResin.onkeydown = (evt) => {
+    if(evt.key === "Enter") {
+        setResin.style.opacity="100%";
+    }
+}

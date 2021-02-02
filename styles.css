@@ -78,7 +78,8 @@ button:focus {
     left: -850px;
     z-index: -1;
 
-    animation: 7s linear wave infinite;
+    animation: 14s linear wave infinite;
+    transition: 1s ease-out;
 }
 
 @keyframes wave {
