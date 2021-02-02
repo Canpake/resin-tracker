@@ -89,7 +89,18 @@ button:focus {
     100% {
         transform: rotate(360deg);
     }
-  }
+}
+
+#resize {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -5px;
+    left: -5px;
+
+    background-color: grey;
+    border-radius: 5px;
+}
 
 .resin {
     position: absolute;

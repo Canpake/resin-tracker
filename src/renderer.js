@@ -125,7 +125,7 @@ btn40.addEventListener("click", changeResinFunction(-40));
 btn60.addEventListener("click", changeResinFunction(60));
 
 
-// Button - Settings Overlay
+// Buttons - Settings Overlay
 let overlay = document.getElementById("settings-overlay");
 let openSettings = document.getElementById('settings-open');
 let closeSettings = document.getElementById('settings-close');
@@ -168,3 +168,18 @@ inputResin.onkeydown = (evt) => {
         setResin.style.opacity="100%";
     }
 }
+
+// Button - Resizing Window
+const {ipcRenderer} = require('electron');
+let resize = document.getElementById("resize");
+let expanded = true         // a boolean to keep track of if currently expanded or not
+
+resize.addEventListener("click", () => {
+    if (expanded) {
+        expanded = false;
+        ipcRenderer.send('resize-small');
+    } else {
+        expanded = true;
+        ipcRenderer.send('resize-large');
+    }
+})
