@@ -64,7 +64,7 @@ button:focus {
     /* background-color: var(--bg-color); */
     background-size: cover;
 
-    transition: width ease-out 0.3s, height ease-out 0.3s;
+    transition: width 0.2s linear, height 0.2s linear;
 }
 
 #bg-image.small {
@@ -78,14 +78,14 @@ button:focus {
     border: 1px solid grey;
     height: 2000px;
     width: 2000px;
-    border-radius: 990px;
+    border-radius: 990px 985px 980px 995px;
 
     position: absolute;
     top: -2000px;
     left: -850px;
     z-index: -1;
 
-    animation: 14s linear wave infinite;
+    animation: 20s linear wave infinite;
     transition: top 1s ease-out;
 }
 
@@ -129,7 +129,7 @@ button:focus {
 
 .resin-value {
     font-size: 36px;
-    transition: font-size 0.4s ease-out;
+    transition: font-size 0.2s linear;
 }
 
 .resin-value.small {
@@ -138,7 +138,7 @@ button:focus {
 
 .resin-time {
     font-size: 18px;
-    transition: font-size 0.4s ease-out;
+    transition: font-size 0.2s linear;
 }
 .resin-time.small {
     font-size: 14px;
